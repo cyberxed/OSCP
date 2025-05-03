@@ -1,0 +1,3 @@
+nmap 192.168.180.145
+
+nmap -p- --open --min-rate 500 -Pn -n  192.168.180.145 -sV -sC 
