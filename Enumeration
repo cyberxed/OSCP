@@ -1,0 +1,5 @@
+HTTP 80 Enumearaion 
+ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://192.168.180.145/FUZZ -t 100
+
+
+└─$ smbclient -L \\\\192.168.180.145\\
